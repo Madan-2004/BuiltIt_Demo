@@ -10,10 +10,43 @@
     .fade {
       transition: opacity 1s ease-in-out;
     }
+    .slider{
+    position: relative;
+    width: 100%;
+    height: 370px;
+    overflow: hidden;
+}
+.item{
+    position: absolute;
+    width: 300px;
+    height: 380px;
+    text-align: justify;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.5s;
+    left: calc(50% - 110px);
+    top: 0;
+}
+#next, #prev{
+    position: absolute;
+    top: 40%;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    font-size: xxx-large;
+    font-family: monospace;
+    font-weight: bold;
+    left: 400px;
+}
+#next{
+    left: unset;
+    right: 400px;
+}
   </style>
 </head>
 
-<body class="bg-gray-900 text-black">
+<body class="bg-blue-200 text-white">
   <!-- Header -->
   <header class="my-10 mx-10 p-5 bg-opacity-75 fixed top-0 w-full z-10 rounded-2xl shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
@@ -88,6 +121,78 @@
           
         </div>
   </section>
+  <section class="h-full">
+      <h1 class="flex p-5 w-full justify-center text-white font-extrabold text-3xl">OUR CULTURAL CLUBS</h1>
+      <div class="flex p-5">
+
+      <div class="text-black slider">
+        <div class="item">
+          <img src="pictures/aaina.png">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">AAINA Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/avana.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex justify-center text-3xl">AVANA Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/cinephiles.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Cinephiles</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/danceclub.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">D-Alpha-CrewZ</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/debsoc.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Debating Society Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/ebsb.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">EBSB Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/gamingclub.png">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Gaming Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/kalakriti.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Kalakriti Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/literaryclub.png">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Literary Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/mystic.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Mystich Hues</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/musicclub.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Music Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/prakriti.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Prakriti Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/quizclub.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">The Quiz Club</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/srijan.png">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">Srijan</h1>
+        </div>
+        <div class="item">
+          <img src="pictures/vlr.jpg">
+            <h1 class="p-4 text-gray-600 font-bold flex  justify-center text-3xl">VLR Club</h1>
+        </div>
+
+      <button id="next">></button>
+      <button id="prev"><</button>
+        </div>
+    </div>
+  </section>
+  
   <script>
     // Background Image Slideshow
     const images = [document.getElementById('bg1'), document.getElementById('bg2'), document.getElementById('bg3')];
@@ -113,6 +218,43 @@
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
+    let items = document.querySelectorAll('.slider .item');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('prev');
+    
+    let active = 0;
+    function loadShow(){
+        let stt = 0;
+        items[active].style.transform = `none`;
+        items[active].style.zIndex = 1;
+        items[active].style.filter = 'none';
+        items[active].style.opacity = 1;
+        for(var i = active + 1; i < items.length; i++){
+            stt++;
+            items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`;
+            items[i].style.zIndex = -stt;
+            items[i].style.filter = 'blur(5px)';
+            items[i].style.opacity = stt > 2 ? 0 : 0.6;
+        }
+        stt = 0;
+        for(var i = active - 1; i >= 0; i--){
+            stt++;
+            items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`;
+            items[i].style.zIndex = -stt;
+            items[i].style.filter = 'blur(5px)';
+            items[i].style.opacity = stt > 2 ? 0 : 0.6;
+        }
+    }
+    loadShow();
+    next.onclick = function(){
+        active = active + 1 < items.length ? active + 1 : active;
+        loadShow();
+    }
+    prev.onclick = function(){
+        active = active - 1 >= 0 ? active - 1 : active;
+        loadShow();
+    }
+    
   </script>
 </body>
 
