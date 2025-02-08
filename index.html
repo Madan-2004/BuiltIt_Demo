@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IITI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade {
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-black">
+  <!-- Header -->
+  <header class="my-10 mx-10 p-5 bg-opacity-75 fixed top-0 w-full z-10 rounded-2xl shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <!-- Logo and Title -->
+      <div class="flex items-center space-x-3">
+        <img src="/pictures/logo1.jpeg" alt="Valer College Logo" class="h-16 w-16">
+        <span class="text-3xl font-bold">IIT INDORE</span>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="space-x-6 hidden md:flex" id="nav-links">
+        <a href="#" class="text-gray-800 hover:text-white">HOME</a>
+        <a href="#" class="text-gray-800 hover:text-white">ABOUT US</a>
+        <a href="#" class="text-gray-800 hover:text-white">THE EXECUTIVE</a>
+        <a href="#" class="text-gray-800 hover:text-white">LEGISTLATURE</a>
+        <a href="#" class="text-gray-800 hover:text-white">ELECTIONS</a>
+        <a href="#" class="text-gray-800 hover:text-white">FEEDBACK</a>
+      </nav>
+
+      <!-- Toggle Button for Mobile -->
+      <button id="menu-toggle" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+
+      <!-- Contact Button -->
+      <div class="hidden md:block">
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">CONTACT US</button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800 bg-opacity-75">
+      <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">HOME</a>
+      <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">ABOUT US</a>
+      <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">THE EXECUTIVE</a>
+      <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">LEGISTLATURE</a>
+      <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">ELECTIONS</a>
+      <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">FEEDBACK</a>
+      <button class="block w-full text-left px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded">CONTACT US</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative h-screen flex items-center justify-center">
+    <!-- Background Images -->
+    <div class="absolute inset-0 w-full h-full">
+      <img src="pictures/picture1.jpg" alt="Background 1" class="absolute inset-0 w-full h-full object-cover opacity-0 fade" id="bg1">
+      <img src="pictures/lhc1.jpeg" alt="Background 2" class="absolute inset-0 w-full h-full object-cover opacity-0 fade" id="bg2">
+      <img src="pictures/lrc.jpg" alt="Background 3" class="absolute inset-0 w-full h-full object-cover opacity-0 fade" id="bg3">
+    </div>
+
+    <!-- Overlay Content -->
+    <div class="relative text-center z-10">
+      <img src="pictures/gymkhana.jpg" alt="Shield Logo" class="mx-auto mb-6 w-24 h-24">
+      <h2 class="text-lg tracking-[0.2em] text-black font-bold uppercase">Welcome to</h2>
+      <h1 class="text-7xl font-bold mt-2 text-white">Student Gymkhana of IIT Indore</h1>
+      <button class="mt-4 text-sm text-blue-400 tracking-widest border-b-2 border-blue-400 hover:text-blue-300">Explore with us</button>
+    </div>
+  </section>
+  <section class="bg-white text-black p-20">
+    <div class="flex">
+        <img src="pictures/picture4.jpg" class="h-96 w-96">
+
+        <div class="p-10 w-3/4">
+          
+          
+          <p class="text-lg leading-relaxed text-gray-700">
+            The <span class="font-bold">Student Gymkhana of IIT Indore</span> serves as the heart of student governance and extracurricular activities, playing a pivotal role in shaping the vibrant campus culture. It is a student-elected body that represents the collective interests of the student community, ensuring their active participation in institute decisions and fostering a sense of belonging. The Gymkhana operates through its three primary councils: the <span class="font-bold">Cultural Council</span>, which nurtures creativity and artistic expression through events, workshops, and the annual cultural festival, <span class="font-bold">Fluxus</span>; the <span class="font-bold">Technical Council</span>, which encourages innovation, critical thinking, and technical excellence by organizing coding competitions, workshops, and hackathons; and the <span class="font-bold">Sports Council</span>, which promotes physical fitness and team spirit through a variety of sports events, tournaments, and participation in inter-IIT meets. Additionally, the Gymkhana is deeply involved in <span class="font-bold">student welfare</span>, offering support systems, mentorship programs, and leadership opportunities to help students excel both academically and personally. Through its diverse initiatives, the Student Gymkhana ensures a holistic development experience, making IIT Indore not just an institute of academic excellence but also a dynamic, inclusive, and engaging community.
+          </p>
+          
+        </div>
+  </section>
+  <script>
+    // Background Image Slideshow
+    const images = [document.getElementById('bg1'), document.getElementById('bg2'), document.getElementById('bg3')];
+    let currentIndex = 0;
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.style.opacity = i === index ? '1' : '0';
+      });
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }, 2000); // Change image every 2 seconds
+
+    showImage(currentIndex); // Initialize the first image
+
+    // Toggle Mobile Menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+
+</html>
