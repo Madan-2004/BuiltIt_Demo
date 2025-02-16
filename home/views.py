@@ -15,3 +15,7 @@ def index(request):
         messages.success(request, 'Your club has been registered successfully.')
 
     return render(request, 'index.html')
+
+def details(request):
+    clubs = Club.objects.all()
+    return render(request, 'details.html', {'clubs': clubs})
