@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Members List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'club/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            text-decoration: none;
+            background: #28a745;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        a:hover {
+            background: #218838;
+        }
+        .remove-btn {
+            background: #dc3545;
+        }
+        .remove-btn:hover {
+            background: #c82333;
+        }
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            display: block;
+            margin: 0 auto;
+        }
+        .edit-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            background: #ffc107;
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .edit-btn:hover {
+            background: #e0a800;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>All Members</h1>
+    <table>
+        <tr>
+            <th>Profile Picture</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>ID</th>
+            <th>Club</th>
+            <th>Designation</th>
+            <th>Branch</th>
+        </tr>
+        {% for member in members %}
+        <tr>
+            <td>
+                {% if member.profile_picture %}
+    {% with member.profile_picture.url as img_url %}
+        {% if img_url|slice:"-4:" == ".svg" %}
+            <img src="{{ img_url }}" alt="Profile Picture" class="profile-pic">
+        {% else %}
+            <img src="{{ img_url }}" alt="Profile Picture" class="profile-pic">
+        {% endif %}
+        {% endwith %}
+        {% else %}
+        <img src="{% static 'club/images/default-profile.png' %}" alt="Default Profile" class="profile-pic">
+        {% endif %}
+
+            </td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.roll_no }}</td>
+            <td>{{ member.club.name }}</td>
+            <td>{{ member.designation }}</td>
+            <td>{{ member.branch }}</td>
+            <td>
+                <a href="{% url 'edit_member' member.id %}" class="edit-btn">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'add_member' %}">Add New Member</a>
+    <a href="{% url 'remove_member' %}" class="remove-btn">Remove Member</a>
+</body>
+</html>

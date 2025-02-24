@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .club-container { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        h2 { color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <h1>Club Details</h1>
+    {% for club in clubs %}
+    <div class="club-container">
+        <h2>{{ club.name }}</h2>
+        <p><strong>Head:</strong> {{ club.head }}</p>
+        <p><strong>Description:</strong> {{ club.description }}</p>
+        <p><strong>Upcoming Events:</strong> {{ club.upcoming_events }}</p>
+        <p><strong>Members:</strong> {{ club.members }}</p>
+        <p><strong>Projects:</strong> {{ club.projects }}</p>
+    </div>
+    {% empty %}
+    <p>No clubs found.</p>
+    {% endfor %}
+</body>
+</html>
