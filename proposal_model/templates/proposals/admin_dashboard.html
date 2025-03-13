@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Admin Dashboard</h2>
+  
+  <h3>Unviewed Proposals</h3>
+  <ul>
+    {% for proposal in unviewed_proposals %}
+      <li>
+        <a href="{{ proposal.pdf.url }}">{{ proposal.pdf.name }}</a>
+        <a href="{% url 'mark_as_viewed' proposal.id %}">Mark as Viewed</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Viewed Proposals</h3>
+  <ul>
+    {% for proposal in viewed_proposals %}
+      <li><a href="{{ proposal.pdf.url }}">{{ proposal.pdf.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

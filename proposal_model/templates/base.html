@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Club Proposals</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'upload_proposal' %}">Upload Proposal</a>
+        
+        {% if user.is_superuser %}
+            <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>
